@@ -1,0 +1,23 @@
+# Fetch and install binary system updates on all FreeBSD machines
+#
+
+- hosts: all
+  become: yes
+
+  tasks:
+
+    - name: Fetch binary system updates
+      when: ansible_os_family == "FreeBSD"
+      shell: freebsd-update --not-running-from-cron fetch
+      register: result_fetch
+      changed_when: "'No updates needed' not in result_fetch.stdout"
+    - debug: var=result_fetch
+      when: result_fetch.changed
+ 
+    - name: Install recently fetched binary system updates
+      when: ansible_os_family == "FreeBSD" and result_fetch.changed
+      shell: freebsd-update --not-running-from-cron install
+      register: result_install
+      changed_when: "'No updates are available to install' not in result_install.stdout"
+    - debug: var=result_install
+      when: result_install.changed
