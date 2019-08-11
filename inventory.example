@@ -1,7 +1,7 @@
 [freebsd_servers]
 192.168.2.1
 192.168.2.2
-webserver #host defined in ~./ssh/config
+webserver #host defined in ~/.ssh/config
 
 [all:vars]
 #ansible_user="ansible"
