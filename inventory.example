@@ -1,0 +1,11 @@
+[freebsd_servers]
+192.168.2.1
+192.168.2.2
+webserver #host defined in ~./ssh/config
+
+[all:vars]
+#ansible_user="ansible"
+ansible_become_method=sudo
+
+[freebsd_servers:vars]
+ansible_python_interpreter=/usr/local/bin/python
