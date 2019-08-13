@@ -1,7 +1,8 @@
 # Fetch and install binary system updates on all FreeBSD machines
 #
 
-- hosts: all
+- name: Fetch and install binary system updates on all FreeBSD machines
+  hosts: all
   become: yes
 
   tasks:

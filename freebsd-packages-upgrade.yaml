@@ -1,7 +1,8 @@
 # Upgrade packages on all FreeBSD machines
 #
 
-- hosts: all
+- name: Upgrade packages on all FreeBSD machines
+  hosts: all
   become: yes
 
   tasks:
