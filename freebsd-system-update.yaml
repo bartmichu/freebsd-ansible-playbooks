@@ -1,4 +1,4 @@
-- name: Fetch and install binary system updates on all FreeBSD machines
+- name: Fetch and install binary system updates on FreeBSD hosts
   hosts: all
   become: yes
 
