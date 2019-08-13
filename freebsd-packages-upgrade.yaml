@@ -6,7 +6,7 @@
   
     - name: Upgrade packages
       when: ansible_os_family == "FreeBSD"
-      shell: pkg upgrade -y
+      command: pkg upgrade -y
       register: result_upgrade
       changed_when: "'Your packages are up to date' not in result_upgrade.stdout"
     - debug: var=result_upgrade
