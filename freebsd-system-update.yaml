@@ -7,15 +7,15 @@
     - name: Fetch binary system updates
       when: ansible_os_family == "FreeBSD"
       command: freebsd-update --not-running-from-cron fetch
-      register: result_fetch
-      changed_when: "'No updates needed' not in result_fetch.stdout"
-    - debug: var=result_fetch
-      when: result_fetch.changed
+      register: fetch_result
+      changed_when: "'No updates needed' not in fetch_result.stdout"
+    - debug: var=fetch_result
+      when: fetch_result.changed
  
     - name: Install recently fetched binary system updates
-      when: ansible_os_family == "FreeBSD" and result_fetch.changed
+      when: ansible_os_family == "FreeBSD" and fetch_result.changed
       command: freebsd-update --not-running-from-cron install
-      register: result_install
-      changed_when: "'No updates are available to install' not in result_install.stdout"
-    - debug: var=result_install
-      when: result_install.changed
+      register: install_result
+      changed_when: "'No updates are available to install' not in install_result.stdout"
+    - debug: var=install_result
+      when: install_result.changed
