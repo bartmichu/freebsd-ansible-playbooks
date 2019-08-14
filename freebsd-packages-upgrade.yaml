@@ -9,8 +9,8 @@
       command: pkg update
       register: result_update
       changed_when: "'FreeBSD repository update completed' in result_update.stdout"
-    - debug: var=result_update
-      when: result_update.changed
+    # - debug: var=result_update
+    #   when: result_update.changed
 
     - name: Upgrade packages
       when: ansible_os_family == "FreeBSD"
