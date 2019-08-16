@@ -20,9 +20,9 @@
       register: upgrade_result
       changed_when: "'Your packages are up to date' not in upgrade_result.stdout"
 
-    - name: Debug the result of Upgrade task
-      when: upgrade_result.changed
-      debug: msg="{{ upgrade_result.stdout_lines }}"
+    # - name: Debug the result of Upgrade task
+    #   when: upgrade_result.changed
+    #   debug: msg="{{ upgrade_result.stdout_lines }}"
 
     - name: List upgraded packages
       when: ansible_os_family == "FreeBSD" and upgrade_result.changed
