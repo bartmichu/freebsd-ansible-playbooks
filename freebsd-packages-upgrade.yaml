@@ -9,13 +9,17 @@
       command: pkg update
       register: update_result
       changed_when: "'FreeBSD repository update completed' in update_result.stdout"
-    # - debug: var=update_result
-    #   when: update_result.changed
+    
+    - name: Debug the result of Update task
+      debug: msg="{{ update_result.stdout_lines }}"
+      when: update_result.changed
 
     - name: Upgrade packages
       when: ansible_os_family == "FreeBSD"
       command: pkg upgrade -y
       register: upgrade_result
       changed_when: "'Your packages are up to date' not in upgrade_result.stdout"
-    - debug: var=upgrade_result
+
+    - name: Debug the result of Upgrade task
+      debug: msg="{{ upgrade_result.stdout_lines }}"
       when: upgrade_result.changed

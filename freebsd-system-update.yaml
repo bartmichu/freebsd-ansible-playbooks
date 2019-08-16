@@ -9,7 +9,9 @@
       command: freebsd-update --not-running-from-cron fetch
       register: fetch_result
       changed_when: "'No updates needed' not in fetch_result.stdout"
-    - debug: var=fetch_result
+
+    - name: Debug the result of Fetch task
+      debug: msg="{{ fetch_result.stdout_lines }}"
       when: fetch_result.changed
  
     - name: Install recently fetched binary system updates
@@ -17,5 +19,7 @@
       command: freebsd-update --not-running-from-cron install
       register: install_result
       changed_when: "'No updates are available to install' not in install_result.stdout"
-    - debug: var=install_result
+
+    - name: Debug the result of Install task
+      debug: msg="{{ install_result.stdout_lines }}"
       when: install_result.changed
