@@ -10,9 +10,9 @@
       register: update_result
       changed_when: "'FreeBSD repository update completed' in update_result.stdout"
     
-    - name: Debug the result of Update task
-      debug: msg="{{ update_result.stdout_lines }}"
-      when: update_result.changed
+    # - name: Debug the result of Update task
+    #   debug: msg="{{ update_result.stdout_lines }}"
+    #   when: update_result.changed
 
     - name: Upgrade packages
       when: ansible_os_family == "FreeBSD"
