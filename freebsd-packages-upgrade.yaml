@@ -12,7 +12,7 @@
     
     # - name: Debug the result of Update task
     #   when: update_result.changed
-    #   debug
+    #   debug:
     #     msg: "{{ update_result.stdout_lines }}"
 
     - name: Upgrade packages
