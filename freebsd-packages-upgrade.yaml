@@ -12,7 +12,8 @@
     
     # - name: Debug the result of Update task
     #   when: update_result.changed
-    #   debug: msg="{{ update_result.stdout_lines }}"
+    #   debug
+    #     msg: "{{ update_result.stdout_lines }}"
 
     - name: Upgrade packages
       when: ansible_os_family == "FreeBSD"
@@ -22,9 +23,10 @@
 
     # - name: Debug the result of Upgrade task
     #   when: upgrade_result.changed
-    #   debug: msg="{{ upgrade_result.stdout_lines }}"
+    #   debug:
+    #     msg: "{{ upgrade_result.stdout_lines }}"
 
     - name: List upgraded packages
       when: ansible_os_family == "FreeBSD" and upgrade_result.changed
-      debug: msg={{ upgrade_result.stdout_lines | select('search', '] Upgrading') | list }}
-  
+      debug:
+        msg: {{ upgrade_result.stdout_lines | select('search', '] Upgrading') | list }}
