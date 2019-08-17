@@ -10,10 +10,10 @@
       register: fetch_result
       changed_when: "'No updates needed' not in fetch_result.stdout"
 
-    - name: Debug the result of Fetch task
-      when: fetch_result.changed
-      debug:
-        msg: "{{ fetch_result.stdout_lines }}"
+    # - name: Debug the result of Fetch task
+    #   when: fetch_result.changed
+    #   debug:
+    #     msg: "{{ fetch_result.stdout_lines }}"
  
     - name: Install recently fetched binary system updates
       when: ansible_os_family == "FreeBSD" and fetch_result.changed
@@ -21,10 +21,10 @@
       register: install_result
       changed_when: "'No updates are available to install' not in install_result.stdout"
 
-    - name: Debug the result of Install task
-      when: install_result.changed
-      debug:
-        msg: "{{ install_result.stdout_lines }}"
+    # - name: Debug the result of Install task
+    #   when: install_result.changed
+    #   debug:
+    #     msg: "{{ install_result.stdout_lines }}"
 
     - name: Check system version and patch level after update
       when: ansible_os_family == "FreeBSD" and install_result.changed
