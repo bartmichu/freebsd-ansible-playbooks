@@ -23,3 +23,13 @@
     - name: Debug the result of Install task
       when: install_result.changed
       debug: msg="{{ install_result.stdout_lines }}"
+
+    - name: Check system version and patch level after update
+      when: ansible_os_family == "FreeBSD" and install_result.changed
+      command: freebsd-version
+      register: version_result
+    
+    - name: Print version string
+      when: ansible_os_family == "FreeBSD" and version_result.changed
+      debug:
+        msg: System updated from {{ansible_distribution_release}} to {{version_result.stdout}}
