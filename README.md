@@ -13,7 +13,7 @@ Sample output with debuggind turned off:
 $ ansible-playbook --ask-become-pass freebsd-packages-upgrade.yaml
 BECOME password:
 
-PLAY [Upgrade packages on FreeBSD hosts] ***************************************
+PLAY [Upgrade installed packages on FreeBSD hosts] ***************************************
 
 TASK [Gathering Facts] *********************************************************
 ok: [freebsd-ansible]
