@@ -31,7 +31,7 @@
       command: freebsd-version
       register: version_result
     
-    - name: Print version string
+    - name: Show update report
       when: ansible_os_family == "FreeBSD" and version_result.changed
       debug:
         msg: System updated from {{ansible_distribution_release}} to {{version_result.stdout}}
