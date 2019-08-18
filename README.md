@@ -24,7 +24,7 @@ ok: [freebsd-ansible]
 TASK [Upgrade packages] ********************************************************
 changed: [freebsd-ansible]
 
-TASK [List upgraded packages] **************************************************
+TASK [Show list of upgraded packages] **************************************************
 ok: [freebsd-ansible] => {
     "msg": [
         "[1/2] Upgrading nginx from 1.16.0_2,2 to 1.16.1_1,2...", 
@@ -60,7 +60,7 @@ changed: [freebsd-ansible]
 TASK [Check system version and patch level after update] ***********************
 changed: [freebsd-ansible]
 
-TASK [Print version string] ****************************************************
+TASK [Show update report] ****************************************************
 ok: [freebsd-ansible] => {
     "msg": "System updated from 12.0-RELEASE-p6 to 12.0-RELEASE-p9"
 }
