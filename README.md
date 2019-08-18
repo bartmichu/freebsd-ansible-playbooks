@@ -4,7 +4,8 @@ Various ansible playbooks that I use to manage FreeBSD machines.
 
 ## freebsd-packages-upgrade.yaml
 
-This is a playbook to upgrade packages on FreeBSD hosts.
+This is a playbook to upgrade all installed packages on FreeBSD hosts.
+It will explicitly update local repository catalogue before upgrading packages and print a list of upgraded packages if any at the end.
 
 Sample output with debuggind turned off:
 
@@ -37,7 +38,7 @@ freebsd-ansible            : ok=4    changed=1    unreachable=0    failed=0    s
 
 ## freebsd-system-update.yaml
 
-This is a playbook to fetch and install binary system updates on FreeBSD hosts.
+This is a playbook to fetch and install binary system updates on FreeBSD hosts. It will print a summary at the end if any updates were installed.
 
 Sample output with debuggind turned off:
 
