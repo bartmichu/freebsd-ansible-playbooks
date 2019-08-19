@@ -26,12 +26,12 @@
     #   debug:
     #     msg: "{{ install_result.stdout_lines }}"
 
-    - name: Check system version and patch level after update
+    - name: Get new system version and patch level
       when: ansible_os_family == "FreeBSD" and install_result.changed
       command: freebsd-version
       register: version_result
     
-    - name: Show update report
+    - name: Show update summary
       when: ansible_os_family == "FreeBSD" and version_result.changed
       debug:
         msg: System updated from {{ ansible_distribution_release }} to {{ version_result.stdout }}
