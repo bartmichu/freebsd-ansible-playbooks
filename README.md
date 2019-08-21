@@ -54,6 +54,9 @@ ok: [freebsd-ansible]
 TASK [Fetch binary system updates] *********************************************
 changed: [freebsd-ansible]
 
+TASK [Create a new Boot Environment] *******************************************
+changed: [freebsd-ansible]
+
 TASK [Install recently fetched binary system updates] **************************
 changed: [freebsd-ansible]
 
@@ -62,11 +65,11 @@ changed: [freebsd-ansible]
 
 TASK [Show update summary] *****************************************************
 ok: [freebsd-ansible] => {
-    "msg": "System updated from 12.0-RELEASE-p6 to 12.0-RELEASE-p9"
+    "msg": "System updated from 12.0-RELEASE-p9 to 12.0-RELEASE-p10"
 }
 
 PLAY RECAP *********************************************************************
-freebsd-ansible            : ok=5    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+freebsd-ansible            : ok=6    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 ## Bootstrapping a FreeBSD host
