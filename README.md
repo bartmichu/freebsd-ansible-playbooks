@@ -38,7 +38,7 @@ freebsd-ansible            : ok=4    changed=2    unreachable=0    failed=0    s
 
 ## freebsd-system-update.yaml
 
-This is a playbook to fetch and install binary system updates on FreeBSD hosts. If any updates are installed then it will also show a summary with old/new system version and patch level.
+This is a playbook to fetch and install binary system updates on FreeBSD hosts. It will create a new boot environment before installing updates. If any updates are installed then it will also show a summary with old/new system version and patch level.
 
 Sample output with debugging turned off:
 
