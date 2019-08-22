@@ -10,11 +10,6 @@
       register: fetch_result
       changed_when: "'No updates needed' not in fetch_result.stdout"
 
-    # - name: Debug the result of Fetch task
-    #   when: fetch_result.changed
-    #   debug:
-    #     msg: "{{ fetch_result.stdout_lines }}"
- 
     - name: Create a new Boot Environment
       when: ansible_os_family == "FreeBSD" and fetch_result.changed
       command: bectl create "ansible-{{ ansible_date_time.iso8601_basic_short }}"
@@ -25,11 +20,6 @@
       command: freebsd-update --not-running-from-cron install
       register: install_result
       changed_when: "'No updates are available to install' not in install_result.stdout"
-
-    # - name: Debug the result of Install task
-    #   when: install_result.changed
-    #   debug:
-    #     msg: "{{ install_result.stdout_lines }}"
 
     - name: Get new system version and patch level
       when: ansible_os_family == "FreeBSD" and install_result.changed
