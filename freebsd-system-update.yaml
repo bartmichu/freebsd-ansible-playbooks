@@ -12,7 +12,7 @@
 
     - name: Create a new Boot Environment
       when: ansible_os_family == "FreeBSD" and fetch_result.changed
-      command: bectl create "ansible-{{ ansible_date_time.iso8601_basic_short }}"
+      command: bectl create "ansible-{{ansible_date_time.iso8601_basic_short}}"
       register: bectl_result
 
     - name: Install recently fetched binary system updates
@@ -29,4 +29,4 @@
     - name: Show update summary
       when: ansible_os_family == "FreeBSD" and version_result.changed
       debug:
-        msg: System updated from {{ ansible_distribution_release }} to {{ version_result.stdout }}
+        msg: System updated from {{ansible_distribution_release}} to {{version_result.stdout}}
