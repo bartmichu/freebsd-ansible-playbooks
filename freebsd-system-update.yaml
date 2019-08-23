@@ -10,8 +10,14 @@
       register: fetch_result
       changed_when: "'No updates needed' not in fetch_result.stdout"
 
+    - name: Get a list of Boot Environments
+      when: ansible_facts["os_family"] == "FreeBSD" and ansible_facts["distribution_version"] is version("12", ">=") and fetch_result.changed
+      command: bectl list -H
+      register: bectl_result
+      ignore_errors: yes
+
     - name: Create a new Boot Environment
-      when: ansible_os_family == "FreeBSD" and fetch_result.changed
+      when: bectl_result is not skipped and bectl_result is not failed
       command: bectl create "ansible-{{ansible_date_time.iso8601_basic_short}}"
       register: bectl_result
 

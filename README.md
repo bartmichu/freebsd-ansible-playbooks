@@ -38,7 +38,7 @@ freebsd-ansible            : ok=4    changed=2    unreachable=0    failed=0    s
 
 ## freebsd-system-update.yaml
 
-This is a playbook to fetch and install binary system updates on FreeBSD hosts. It will create a new boot environment before installing updates. If any updates are installed then it will also show a summary with old/new system version and patch level. Requires FreeBSD >= 12 on ZFS root.
+This is a playbook to fetch and install binary system updates on FreeBSD hosts. It will create a new boot environment before installing updates on ZFS systems. If any updates are installed then it will also show a summary with old/new system version and patch level. Works with ZFS and UFS based installations.
 
 Sample output with debugging turned off:
 
@@ -52,6 +52,9 @@ TASK [Gathering Facts] *********************************************************
 ok: [freebsd-ansible]
 
 TASK [Fetch binary system updates] *********************************************
+changed: [freebsd-ansible]
+
+TASK [Get a list of Boot Environments] *****************************************
 changed: [freebsd-ansible]
 
 TASK [Create a new Boot Environment] *******************************************
@@ -69,7 +72,7 @@ ok: [freebsd-ansible] => {
 }
 
 PLAY RECAP *********************************************************************
-freebsd-ansible            : ok=6    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+freebsd-ansible            : ok=7    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 ## Bootstrapping a FreeBSD host
