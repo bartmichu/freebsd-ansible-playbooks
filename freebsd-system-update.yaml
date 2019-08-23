@@ -5,7 +5,7 @@
   tasks:
 
     - name: Fetch binary system updates
-      when: ansible_os_family == "FreeBSD"
+      when: ansible_facts["os_family"] == "FreeBSD"
       command: freebsd-update --not-running-from-cron fetch
       register: fetch_result
       changed_when: "'No updates needed' not in fetch_result.stdout"
