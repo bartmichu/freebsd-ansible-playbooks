@@ -54,7 +54,7 @@ ok: [freebsd-ansible]
 TASK [Fetch binary system updates] *********************************************
 changed: [freebsd-ansible]
 
-TASK [Get a list of Boot Environments] *****************************************
+TASK [Check if Boot Environments are supported] ********************************
 changed: [freebsd-ansible]
 
 TASK [Create a new Boot Environment] *******************************************
