@@ -21,7 +21,7 @@ ok: [freebsd-ansible]
 TASK [Explicitly update local repository catalogue] ****************************
 changed: [freebsd-ansible]
 
-TASK [Upgrade packages] ********************************************************
+TASK [Upgrade installed packages] **********************************************
 changed: [freebsd-ansible]
 
 TASK [Show a list of upgraded packages] ****************************************
