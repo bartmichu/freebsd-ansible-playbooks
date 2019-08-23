@@ -17,6 +17,6 @@
       changed_when: "'Your packages are up to date' not in upgrade_result.stdout"
 
     - name: Show a list of upgraded packages
-      when: ansible_os_family == "FreeBSD" and upgrade_result.changed
+      when: upgrade_result.changed
       debug:
         msg: "{{upgrade_result.stdout_lines | select('search', '] Upgrading') | list}}"
