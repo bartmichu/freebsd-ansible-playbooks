@@ -10,7 +10,7 @@ It will explicitly update local repository catalogue before upgrading packages a
 Sample output:
 
 ```shell
-$ ansible-playbook --ask-become-pass freebsd-packages-upgrade.yaml
+$ ansible-playbook --ask-become-pass freebsd-packages-upgrade.yaml -l test
 BECOME password:
 
 PLAY [Upgrade installed packages on FreeBSD hosts] *****************************
@@ -20,6 +20,12 @@ ok: [freebsd-ansible]
 
 TASK [Explicitly update local repository catalogue] ****************************
 changed: [freebsd-ansible]
+
+TASK [Check if Boot Environments are supported] ********************************
+skipping: [freebsd-ansible]
+
+TASK [Create a new Boot Environment] *******************************************
+skipping: [freebsd-ansible]
 
 TASK [Upgrade installed packages] **********************************************
 changed: [freebsd-ansible]
@@ -33,7 +39,7 @@ ok: [freebsd-ansible] => {
 }
 
 PLAY RECAP *********************************************************************
-freebsd-ansible            : ok=4    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+freebsd-ansible            : ok=4    changed=2    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
 ```
 
 ## freebsd-system-update.yaml
