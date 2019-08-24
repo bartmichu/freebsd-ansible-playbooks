@@ -1,6 +1,8 @@
 - name: Fetch and install binary system updates on FreeBSD hosts
   hosts: all
   become: yes
+  vars:
+    create_be: true
 
   tasks:
 
@@ -11,7 +13,7 @@
       changed_when: "'No updates needed' not in fetch_result.stdout"
 
     - name: Check if Boot Environments are supported
-      when: fetch_result.changed and ansible_facts["distribution_version"] is version("12", ">=")
+      when: create_be and fetch_result.changed and ansible_facts["distribution_version"] is version("12", ">=")
       command: bectl list -H
       register: bectl_result
       ignore_errors: yes

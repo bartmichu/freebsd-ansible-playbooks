@@ -10,6 +10,17 @@
       register: update_result
       changed_when: "'FreeBSD repository update completed' in update_result.stdout"
     
+    - name: Check if Boot Environments are supported
+      when: update_result.changed and ansible_facts["distribution_version"] is version("12", ">=")
+      command: bectl list -H
+      register: bectl_result
+      ignore_errors: yes
+
+    - name: Create a new Boot Environment
+      when: bectl_result is not skipped and bectl_result is not failed
+      command: bectl create "ansible-{{ansible_date_time.iso8601_basic_short}}"
+      register: bectl_result
+
     - name: Upgrade installed packages
       when: ansible_facts["os_family"] == "FreeBSD"
       command: pkg upgrade -y
