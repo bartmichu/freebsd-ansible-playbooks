@@ -5,7 +5,7 @@ Various ansible playbooks that I use to manage FreeBSD machines.
 ## freebsd-packages-upgrade.yaml
 
 This is a playbook to upgrade all installed packages on FreeBSD hosts.
-It will explicitly update local repository catalogue before upgrading packages and then show a list of upgraded packages at the end.
+It will explicitly update local repository catalogue before upgrading packages and then show a list of upgraded packages at the end. Optionally (False by default) it can also create a new boot environment before upgrading packages.
 
 Sample output:
 
@@ -38,7 +38,7 @@ freebsd-ansible            : ok=4    changed=2    unreachable=0    failed=0    s
 
 ## freebsd-system-update.yaml
 
-This is a playbook to fetch and install binary system updates on FreeBSD hosts. It will create a new boot environment before installing updates on ZFS systems. If any updates are installed then it will also show a summary with old/new system version and patch level. Works with ZFS and UFS based installations.
+This is a playbook to fetch and install binary system updates on FreeBSD hosts. Optionally (True by default) it can create a new boot environment before installing updates on ZFS systems. If any updates are installed then it will also show a summary with old/new system version and patch level. Works with ZFS and UFS based installations.
 
 Sample output:
 

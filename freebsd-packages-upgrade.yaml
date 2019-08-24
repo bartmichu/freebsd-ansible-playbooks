@@ -1,6 +1,8 @@
 - name: Upgrade installed packages on FreeBSD hosts
   hosts: all
   become: yes
+  vars:
+    create_be: false
 
   tasks:
 
@@ -11,7 +13,7 @@
       changed_when: "'FreeBSD repository update completed' in update_result.stdout"
     
     - name: Check if Boot Environments are supported
-      when: update_result.changed and ansible_facts["distribution_version"] is version("12", ">=")
+      when: create_be and update_result.changed and ansible_facts["distribution_version"] is version("12", ">=")
       command: bectl list -H
       register: bectl_result
       ignore_errors: yes
