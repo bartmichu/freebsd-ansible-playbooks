@@ -11,9 +11,15 @@
       command: pkg update
       register: update_result
       changed_when: "'FreeBSD repository update completed' in update_result.stdout"
-    
+
+    - name: Check for outdated packages
+      when: ansible_facts["os_family"] == "FreeBSD"
+      command: pkg version -RU -l \<
+      register: outdated_result
+      changed_when: outdated_result.stdout_lines | length > 0
+
     - name: Check if Boot Environments are supported
-      when: create_be and update_result.changed and ansible_facts["distribution_version"] is version("12", ">=")
+      when: outdated_result.changed and create_be and ansible_facts["distribution_version"] is version("12", ">=")
       command: bectl list -H
       register: bectl_result
       ignore_errors: yes
@@ -24,7 +30,7 @@
       register: bectl_result
 
     - name: Upgrade installed packages
-      when: ansible_facts["os_family"] == "FreeBSD"
+      when: outdated_result.changed
       command: pkg upgrade -y
       register: upgrade_result
       changed_when: "'Your packages are up to date' not in upgrade_result.stdout"
