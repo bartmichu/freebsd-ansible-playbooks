@@ -6,35 +6,35 @@
     create_be: true
 
   tasks:
-    - name: Fetch binary system updates
+    - name: Fetching binary system updates
       when: ansible_facts["os_family"] == "FreeBSD"
       command: freebsd-update --not-running-from-cron fetch
       register: fetch_result
       changed_when: "'No updates needed' not in fetch_result.stdout"
 
-    - name: Check if Boot Environments are supported
+    - name: Checking if Boot Environments are supported
       when: create_be and fetch_result.changed and ansible_facts["distribution_version"] is version("12", ">=")
       command: bectl list -H
       register: bectl_result
       ignore_errors: yes
 
-    - name: Create a new Boot Environment
+    - name: Creating a new Boot Environment
       when: bectl_result is not skipped and bectl_result is not failed
       command: bectl create "ansible_{{ansible_date_time.iso8601_basic_short}}_system_update"
       register: bectl_result
 
-    - name: Install recently fetched binary system updates
+    - name: Installing recently fetched binary system updates
       when: fetch_result.changed
       command: freebsd-update --not-running-from-cron install
       register: install_result
       changed_when: "'No updates are available to install' not in install_result.stdout"
 
-    - name: Get new system version and patch level
+    - name: Getting new system version and patch level
       when: install_result.changed
       command: freebsd-version
       register: version_result
 
-    - name: Show update summary
+    - name: Printing update summary
       when: version_result.changed
       debug:
         msg: System updated from {{ansible_distribution_release}} to {{version_result.stdout}}

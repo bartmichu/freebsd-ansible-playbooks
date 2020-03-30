@@ -18,22 +18,22 @@ PLAY [Upgrade installed packages on FreeBSD hosts] *****************************
 TASK [Gathering Facts] *********************************************************
 ok: [freebsd-ansible]
 
-TASK [Explicitly update local repository catalogue] ****************************
+TASK [Explicitly updating local repository catalogue] **************************
 changed: [freebsd-ansible]
 
-TASK [Check for outdated packages] *********************************************
+TASK [Checking for outdated packages] ******************************************
 changed: [freebsd-ansible]
 
-TASK [Check if Boot Environments are supported] ********************************
+TASK [Checking if Boot Environments are supported] *****************************
 skipping: [freebsd-ansible]
 
-TASK [Create a new Boot Environment] *******************************************
+TASK [Creating a new Boot Environment] *****************************************
 skipping: [freebsd-ansible]
 
-TASK [Upgrade installed packages] **********************************************
+TASK [Upgrading installed packages] ********************************************
 changed: [freebsd-ansible]
 
-TASK [Show a list of upgraded packages] ****************************************
+TASK [Printing a list of upgraded packages] ************************************
 ok: [freebsd-ansible] => {
     "msg": [
         "[1/4] Upgrading nginx from 1.16.0_2,2 to 1.16.1_2,2...", 
@@ -62,22 +62,22 @@ PLAY [Fetch and install binary system updates on FreeBSD hosts] ****************
 TASK [Gathering Facts] *********************************************************
 ok: [freebsd-ansible]
 
-TASK [Fetch binary system updates] *********************************************
+TASK [Fetching binary system updates] ******************************************
 changed: [freebsd-ansible]
 
-TASK [Check if Boot Environments are supported] ********************************
+TASK [Checking if Boot Environments are supported] *****************************
 changed: [freebsd-ansible]
 
-TASK [Create a new Boot Environment] *******************************************
+TASK [Creating a new Boot Environment] *****************************************
 changed: [freebsd-ansible]
 
-TASK [Install recently fetched binary system updates] **************************
+TASK [Installing recently fetched binary system updates] ***********************
 changed: [freebsd-ansible]
 
-TASK [Get new system version and patch level] **********************************
+TASK [Getting new system version and patch level] ******************************
 changed: [freebsd-ansible]
 
-TASK [Show update summary] *****************************************************
+TASK [Printing update summary] *************************************************
 ok: [freebsd-ansible] => {
     "msg": "System updated from 12.0-RELEASE-p9 to 12.0-RELEASE-p10"
 }
