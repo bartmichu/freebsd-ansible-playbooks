@@ -1,11 +1,11 @@
 - name: Upgrade installed packages on FreeBSD hosts
   hosts: all
   become: yes
+  
   vars:
     create_be: false
 
   tasks:
-
     - name: Explicitly update local repository catalogue
       when: ansible_facts["os_family"] == "FreeBSD"
       command: pkg update

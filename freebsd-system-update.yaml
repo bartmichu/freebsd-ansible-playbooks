@@ -1,11 +1,11 @@
 - name: Fetch and install binary system updates on FreeBSD hosts
   hosts: all
   become: yes
+
   vars:
     create_be: true
 
   tasks:
-
     - name: Fetch binary system updates
       when: ansible_facts["os_family"] == "FreeBSD"
       command: freebsd-update --not-running-from-cron fetch
@@ -33,7 +33,7 @@
       when: install_result.changed
       command: freebsd-version
       register: version_result
-    
+
     - name: Show update summary
       when: version_result.changed
       debug:
