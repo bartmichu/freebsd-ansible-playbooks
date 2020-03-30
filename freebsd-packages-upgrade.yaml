@@ -26,7 +26,7 @@
 
     - name: Create a new Boot Environment
       when: bectl_result is not skipped and bectl_result is not failed
-      command: bectl create "ansible-{{ansible_date_time.iso8601_basic_short}}"
+      command: bectl create "ansible_{{ansible_date_time.iso8601_basic_short}}_packages_upgrade"
       register: bectl_result
 
     - name: Upgrade installed packages
