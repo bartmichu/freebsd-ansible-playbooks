@@ -26,7 +26,7 @@
 
     - name: Creating a new Boot Environment
       when: bectl_result is not skipped and bectl_result is not failed
-      command: bectl create "ansible_{{ansible_date_time.iso8601_basic_short}}_packages_upgrade"
+      command: bectl create "ansible_{{ ansible_date_time.iso8601_basic_short }}_packages_upgrade"
       register: bectl_result
 
     - name: Upgrading installed packages
@@ -38,4 +38,4 @@
     - name: Printing a list of upgraded packages
       when: upgrade_result.changed
       debug:
-        msg: "{{upgrade_result.stdout_lines | select('search', '] Upgrading') | list}}"
+        msg: "{{ upgrade_result.stdout_lines | select('search', '] Upgrading') | list }}"

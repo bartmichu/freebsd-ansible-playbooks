@@ -20,7 +20,7 @@
 
     - name: Creating a new Boot Environment
       when: bectl_result is not skipped and bectl_result is not failed
-      command: bectl create "ansible_{{ansible_date_time.iso8601_basic_short}}_system_update"
+      command: bectl create "ansible_{{ ansible_date_time.iso8601_basic_short }}_system_update"
       register: bectl_result
 
     - name: Installing recently fetched binary system updates
@@ -37,4 +37,4 @@
     - name: Printing update summary
       when: version_result.changed
       debug:
-        msg: System updated from {{ansible_distribution_release}} to {{version_result.stdout}}
+        msg: System updated from {{ ansible_distribution_release }} to {{ version_result.stdout }}
