@@ -1,6 +1,8 @@
 - name: Fetch and install binary system updates on FreeBSD hosts
   hosts: all
   become: yes
+  environment:
+    ansible_shell_type: "sh"
 
   vars:
     create_be: true
