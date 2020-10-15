@@ -6,36 +6,36 @@
     create_be: false
 
   tasks:
-    - name: Explicitly updating local repository catalogue
+    - name: Explicitly update local repository catalogue
       when: ansible_facts["os_family"] == "FreeBSD"
       command: pkg update
       register: update_result
       changed_when: "'FreeBSD repository update completed' in update_result.stdout"
 
-    - name: Checking for outdated packages
+    - name: Check for outdated packages
       when: ansible_facts["os_family"] == "FreeBSD"
       command: pkg version -RU -l \<
       register: outdated_result
       changed_when: outdated_result.stdout_lines | length > 0
 
-    - name: Checking if Boot Environments are supported
+    - name: Check if Boot Environments are supported
       when: outdated_result.changed and create_be and ansible_facts["distribution_version"] is version("12", ">=")
       command: bectl list -H
       register: bectl_result
       ignore_errors: yes
 
-    - name: Creating a new Boot Environment
+    - name: Create a new Boot Environment
       when: bectl_result is not skipped and bectl_result is not failed
       command: bectl create "ansible_{{ ansible_date_time.iso8601_basic_short }}_packages_upgrade"
       register: bectl_result
 
-    - name: Upgrading installed packages
+    - name: Upgrade installed packages
       when: outdated_result.changed
       command: pkg upgrade -y
       register: upgrade_result
       changed_when: "'Your packages are up to date' not in upgrade_result.stdout"
 
-    - name: Printing a list of upgraded packages
+    - name: List upgraded packages
       when: upgrade_result.changed
       debug:
         msg: "{{ upgrade_result.stdout_lines | select('search', '] Upgrading') | list }}"
